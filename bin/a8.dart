@@ -18,8 +18,26 @@ void solve2() {
   var res = 0;
   var lines = parseInput(8, false);
 
-  final interpreter = Interpreter(lines);
-  res = interpreter.run();
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    // acc commands do not require checking.
+    if (line.startsWith('acc')) {
+      continue;
+    }
+    var v = 1;
+
+    lines[i] = line.replaceFirstMapped(RegExp(r'(?:nop|jmp)'), (match) {
+      return match.group(0) == 'jmp' ? 'nop' : 'jmp';
+    });
+
+    final interpreter = Interpreter(lines);
+    res = interpreter.run();
+    if (interpreter.ended_normally) {
+      break;
+    } else {
+      lines[i] = line;
+    }
+  }
 
   print(res);
 }
@@ -29,6 +47,7 @@ void solve2() {
 class Interpreter {
   int accumulator = 0;
   int curr_command = 0;
+  bool ended_normally = false;
 
   List<bool> used;
   List<String> program;
@@ -38,7 +57,6 @@ class Interpreter {
   Interpreter(this.program) : used = List<bool>(program.length);
 
   int run() {
-    // used[0] = true;
     do {
       used[curr_command] = true;
       evaluate(program[curr_command]);
@@ -47,10 +65,15 @@ class Interpreter {
   }
 
   bool _is_done() {
-    if (curr_command > program.length) return true;
-    return used[curr_command] ?? false;
+    if (curr_command >= program.length) {
+      ended_normally = true;
+      return true;
+    } else {
+      return used[curr_command] ?? false;
+    }
   }
 
+  /// Sets the new values for both the accumulator and the current_command.
   void evaluate(String command) {
     final match = command_parser.firstMatch(command);
     final op = match.namedGroup('op');
