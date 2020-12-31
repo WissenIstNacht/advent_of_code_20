@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'a8.dart';
+import 'a9.dart';
 
 void main(List<String> arguments) {
-  solve1();
+  solve2();
 }
 
 List<String> parseInput(int problem, bool test) {
