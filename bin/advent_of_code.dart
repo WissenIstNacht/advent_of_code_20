@@ -1,7 +1,7 @@
 import '../lib/executor.dart';
-import 'day1/a1p2.dart';
+import 'day2/a2p1.dart';
 
 void main(List<String> arguments) {
-  var solver = new Day1Part2();
+  var solver = new Day2Part1();
   Executor.execute(solver);
 }

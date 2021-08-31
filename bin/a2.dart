@@ -1,36 +1,43 @@
 import 'dart:io';
 
+import '../lib/solver.dart';
+
 /*===== PART 1 =========================================================================*/
 
-void solve1() {
-  final lines = File('inputs\\i2.txt').readAsLinesSync();
-  final no_correct = lines.fold(0, isValidPasswordimproved);
-  print(no_correct);
-}
+class Day2Part1 extends Solver {
+  Day2Part1() : super(2);
 
-int isValidPassword(int val, String line) {
-  var policy = PasswordPolicy.explicit(line);
-  var sum = 0;
-  for (var i = 0; i < policy.password.length; i++) {
-    if (policy.password[i] == policy.c) sum++;
+  @override
+  String solve(List<String> input) {
+    final lines = File('inputs\\i2.txt').readAsLinesSync();
+    final no_correct = lines.fold(0, isValidPasswordimproved);
+    return no_correct.toString();
   }
-  if (sum < policy.a || sum > policy.b) {
-    return val;
-  } else {
-    return val + 1;
-  }
-}
 
-int isValidPasswordimproved(int val, String line) {
-  var policy = PasswordPolicy.regex(line);
-  var sum = 0;
-  for (var i = 0; i < policy.password.length; i++) {
-    if (policy.password[i] == policy.c) sum++;
+  int isValidPassword(int val, String line) {
+    var policy = PasswordPolicy.explicit(line);
+    var sum = 0;
+    for (var i = 0; i < policy.password.length; i++) {
+      if (policy.password[i] == policy.c) sum++;
+    }
+    if (sum < policy.a || sum > policy.b) {
+      return val;
+    } else {
+      return val + 1;
+    }
   }
-  if (policy.a <= sum && sum <= policy.b) {
-    return val + 1;
-  } else {
-    return val;
+
+  int isValidPasswordimproved(int val, String line) {
+    var policy = PasswordPolicy.regex(line);
+    var sum = 0;
+    for (var i = 0; i < policy.password.length; i++) {
+      if (policy.password[i] == policy.c) sum++;
+    }
+    if (policy.a <= sum && sum <= policy.b) {
+      return val + 1;
+    } else {
+      return val;
+    }
   }
 }
 
