@@ -1,4 +1,7 @@
 abstract class Solver {
-  String solveFirst(List<String> input);
-  String solveSecond(List<String> input);
+  int day;
+
+  Solver(this.day);
+
+  String solve(List<String> input);
 }

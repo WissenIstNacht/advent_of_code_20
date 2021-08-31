@@ -1,11 +1,9 @@
 import '../lib/solver.dart';
 
-class SolverX extends Solver {
-  String solveFirst(List<String> input) {
-    return "solved";
-  }
+class Solver42f extends Solver {
+  Solver42f() : super(42);
 
-  String solveSecond(List<String> input) {
+  String solve(List<String> input) {
     return "solved";
   }
 }

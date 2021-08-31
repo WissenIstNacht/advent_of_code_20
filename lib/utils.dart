@@ -1,13 +1,9 @@
 class Utils {
-  static List<String> parseInput(int problem) {
+  static List<String> fetchInput(int problem) {
     print("getting Input");
     print("parsing Input");
 
     return ["file", "read"];
-  }
-
-  static void execute(List<String> input) {
-    print("executing");
   }
 
   static void prettyPrint(String result) {
