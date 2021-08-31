@@ -1,9 +1,8 @@
-class Utils {
-  static List<String> fetchInput(int problem) {
-    print("getting Input");
-    print("parsing Input");
+import 'dart:html';
 
-    return ["file", "read"];
+class Utils {
+  static List<String> readInput(int problem) {
+    return [];
   }
 
   static void prettyPrint(String result) {
