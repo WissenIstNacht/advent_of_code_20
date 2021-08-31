@@ -1,12 +1,9 @@
-import 'dart:io';
-
-import 'a9.dart';
+import "../src/ax.dart";
+import "../lib/utils.dart";
 
 void main(List<String> arguments) {
-  solve2();
-}
-
-List<String> parseInput(int problem, bool test) {
-  final c = test ? 't' : 'i';
-  return File('input_files\\${c}${problem}.txt').readAsLinesSync();
+  var solver = SolverX();
+  var input = Utils.parseInput(1);
+  var output = solver.solveFirst(input);
+  Utils.prettyPrint(output);
 }
