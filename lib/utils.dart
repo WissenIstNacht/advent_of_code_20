@@ -1,11 +1,11 @@
-import 'dart:html';
+import 'dart:io';
 
 class Utils {
   static List<String> readInput(int problem) {
-    return [];
+    return File('bin/day${problem}/input${problem}.txt').readAsLinesSync();
   }
 
   static void prettyPrint(String result) {
-    print("This is the result: ${result}");
+    print("The result is: ${result}");
   }
 }
