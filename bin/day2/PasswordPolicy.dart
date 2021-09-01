@@ -31,7 +31,7 @@ class PasswordPolicy {
     final matches = regex.allMatches(line).elementAt(0);
 
     return PasswordParameters(
-      int.parse(matches.group(1) ?? "-1"),
+      int.parse((matches.group(1) ?? "-1")),
       int.parse(matches.group(2) ?? "-1"),
       matches.group(3) ?? "hey",
       matches.group(4) ?? "hey",

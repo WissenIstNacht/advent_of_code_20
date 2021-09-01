@@ -1,5 +1,5 @@
 import '../../lib/solver.dart';
-import '../a2.dart';
+import 'PasswordPolicy.dart';
 
 class Day2Part2 extends Solver {
   Day2Part2() : super(2);
@@ -19,7 +19,7 @@ class Day2Part2 extends Solver {
         return val;
       }
     });
-    throw NullThrownError();
+    return no_correct.toString();
   }
 
   int isValidPassword(int val, String line) {

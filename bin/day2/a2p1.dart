@@ -1,7 +1,5 @@
-import 'dart:io';
-
 import '../../lib/solver.dart';
-import '../a2.dart';
+import 'PasswordPolicy.dart';
 
 /*===== PART 1 =========================================================================*/
 
