@@ -28,8 +28,7 @@ class Day6Part2 extends Solver {
       final alphabet_pos = r - 97;
       indicator[alphabet_pos]++;
     }
-    final no_answered = indicator.fold(
-        0, (int val, elem) => (elem == group_size) ? val + 1 : val);
-    return no_answered;
+    final answeredCount = indicator.where((i) => i == group_size).length;
+    return answeredCount;
   }
 }
