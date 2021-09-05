@@ -1,4 +1,5 @@
 import '../../lib/solver.dart';
+import 'Group.dart';
 
 class Day6Part1 extends Solver {
   Day6Part1() : super(6);
@@ -6,21 +7,19 @@ class Day6Part1 extends Solver {
   @override
   String solve(List<String> input) {
     var sum = 0;
-    var group = '';
-    for (var line in input) {
-      if (line.isNotEmpty) {
-        group += line;
-      } else {
-        //do something
-        sum += evaluateGroupExists(group);
-        group = '';
-      }
+    final groupMaker = new GroupMaker(input);
+
+    var group = groupMaker.next();
+    while (!(group is EmptyGroup)) {
+      sum += evaluateGroupExists(group);
+      group = groupMaker.next();
     }
     return sum.toString();
   }
 
-  int evaluateGroupExists(String answers) {
+  int evaluateGroupExists(Group group) {
     var indicator = List.filled(26, false);
+    var answers = group.content;
     for (var r in answers.runes) {
       final alphabet_pos = r - 97;
       indicator[alphabet_pos] |= true;
