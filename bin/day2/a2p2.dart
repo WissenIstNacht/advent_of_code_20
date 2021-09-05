@@ -6,45 +6,18 @@ class Day2Part2 extends Solver {
 
   @override
   String solve(List<String> input) {
-    final no_correct = input.fold(0, (int val, String line) {
-      final policy = PasswordPolicy.regex(line);
-      var first = false;
-      var second = false;
-      if (policy.password[policy.a - 1] == policy.c) first = true;
-      if (policy.password[policy.b - 1] == policy.c) second = true;
-
-      if (first ^ second) {
-        return val + 1;
-      } else {
-        return val;
-      }
-    });
-    return no_correct.toString();
+    final correctCount = input.where(isValidPassword).length;
+    return correctCount.toString();
   }
 
-  int isValidPassword(int val, String line) {
-    var policy = PasswordPolicy.explicit(line);
-    var sum = 0;
-    for (var i = 0; i < policy.password.length; i++) {
-      if (policy.password[i] == policy.c) sum++;
-    }
-    if (sum < policy.a || sum > policy.b) {
-      return val;
-    } else {
-      return val + 1;
-    }
-  }
-
-  int isValidPasswordimproved(int val, String line) {
-    var policy = PasswordPolicy.regex(line);
-    var sum = 0;
-    for (var i = 0; i < policy.password.length; i++) {
-      if (policy.password[i] == policy.c) sum++;
-    }
-    if (policy.a <= sum && sum <= policy.b) {
-      return val + 1;
-    } else {
-      return val;
-    }
+  bool isValidPassword(String line) {
+    final policy = PolicyParser.regex(line);
+    var first = false;
+    var second = false;
+    if (policy.password[policy.minCount - 1] == policy.requiredChar)
+      first = true;
+    if (policy.password[policy.maxCount - 1] == policy.requiredChar)
+      second = true;
+    return first ^ second;
   }
 }

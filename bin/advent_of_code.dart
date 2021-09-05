@@ -1,8 +1,10 @@
 import '../lib/executor.dart';
+import 'day2/a2p1.dart';
+import 'day2/a2p2.dart';
 import 'day6/a6p1.dart';
 import 'day6/a6p2.dart';
 
 void main(List<String> arguments) {
-  var solver = new Day6Part2();
+  var solver = new Day2Part2();
   Executor.execute(solver);
 }

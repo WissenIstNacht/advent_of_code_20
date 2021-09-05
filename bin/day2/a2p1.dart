@@ -8,33 +8,16 @@ class Day2Part1 extends Solver {
 
   @override
   String solve(List<String> input) {
-    final no_correct = input.fold(0, isValidPasswordimproved);
-    return no_correct.toString();
+    final correctCount = input.where(isValidPassword).length;
+    return correctCount.toString();
   }
 
-  int isValidPassword(int val, String line) {
-    var policy = PasswordPolicy.explicit(line);
+  bool isValidPassword(String line) {
+    var policy = PolicyParser.regex(line);
     var sum = 0;
     for (var i = 0; i < policy.password.length; i++) {
-      if (policy.password[i] == policy.c) sum++;
+      if (policy.password[i] == policy.requiredChar) sum++;
     }
-    if (sum < policy.a || sum > policy.b) {
-      return val;
-    } else {
-      return val + 1;
-    }
-  }
-
-  int isValidPasswordimproved(int val, String line) {
-    var policy = PasswordPolicy.regex(line);
-    var sum = 0;
-    for (var i = 0; i < policy.password.length; i++) {
-      if (policy.password[i] == policy.c) sum++;
-    }
-    if (policy.a <= sum && sum <= policy.b) {
-      return val + 1;
-    } else {
-      return val;
-    }
+    return policy.minCount <= sum && sum <= policy.maxCount;
   }
 }

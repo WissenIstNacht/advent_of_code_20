@@ -1,4 +1,4 @@
-class PasswordPolicy {
+class PolicyParser {
   static explicit(String line) {
     var i = 0;
     var sub = '';
@@ -23,14 +23,14 @@ class PasswordPolicy {
       password += line[i];
       i++;
     }
-    return PasswordParameters(a, b, c, password);
+    return PolicyParameters(a, b, c, password);
   }
 
-  static PasswordParameters regex(String line) {
+  static PolicyParameters regex(String line) {
     final regex = RegExp(r'^([0-9]+)-([0-9]+) ([a-z]): ([a-zA-Z]+)$');
     final matches = regex.allMatches(line).elementAt(0);
 
-    return PasswordParameters(
+    return PolicyParameters(
       int.parse((matches.group(1) ?? "-1")),
       int.parse(matches.group(2) ?? "-1"),
       matches.group(3) ?? "hey",
@@ -39,9 +39,10 @@ class PasswordPolicy {
   }
 }
 
-class PasswordParameters {
-  int a, b;
-  String c, password;
+class PolicyParameters {
+  int minCount, maxCount;
+  String requiredChar, password;
 
-  PasswordParameters(this.a, this.b, this.c, this.password);
+  PolicyParameters(
+      this.minCount, this.maxCount, this.requiredChar, this.password);
 }
