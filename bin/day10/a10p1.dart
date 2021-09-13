@@ -1,4 +1,5 @@
 import '../../lib/solver.dart';
+import 'Difference.dart';
 
 class Day10Part1 extends Solver {
   Day10Part1() : super(10);
@@ -7,29 +8,21 @@ class Day10Part1 extends Solver {
   String solve(List<String> input) {
     var jolts = input.map((s) => int.parse(s)).toList();
     jolts.sort();
-    var diff1 = 0;
-    var diff3 = 0;
+    final diff1 = DifferenceCounter(1);
+    final diff3 = DifferenceCounter(3);
 
-    // source difference (from outlet to first adapter.)
-    switch (jolts.first) {
-      case 1:
-        diff1++;
-        break;
-      case 3:
-        diff3++;
-        break;
-      default:
-        break;
+    int neighbourReducer(int prev, int elem) {
+      if (diff1.analyze(prev, elem)) {
+      } else if (diff3.analyze(prev, elem)) {}
+      return elem;
     }
 
-    for (var i = 0; i < jolts.length - 1; i++) {
-      if (jolts[i] + 1 == jolts[i + 1]) diff1++;
-      if (jolts[i] + 3 == jolts[i + 1]) diff3++;
-    }
+    //outlet to first covered by initial value being 0
+    jolts.fold(0, neighbourReducer);
+    //last to device is a 3-difference
+    diff3.count++;
 
-    diff3++; // 3 jolts difference to device.
-    final res = diff1 * diff3;
-
+    final res = diff1.count * diff3.count;
     return res.toString();
   }
 }
