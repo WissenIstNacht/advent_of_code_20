@@ -1,4 +1,4 @@
-import '../../lib/solver.dart';
+import 'package:avent_of_code/solver.dart';
 
 class Day3Part1 extends Solver {
   int slope = 3;

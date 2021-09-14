@@ -1,4 +1,4 @@
-import '../../lib/solver.dart';
+import 'package:avent_of_code/solver.dart';
 import 'PasswordPolicy.dart';
 
 class Day2Part2 extends Solver {

@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../../lib/solver.dart';
+import 'package:avent_of_code/solver.dart';
 
 class Day1Part1 extends Solver {
   Day1Part1() : super(1);

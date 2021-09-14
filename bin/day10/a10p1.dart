@@ -1,4 +1,4 @@
-import '../../lib/solver.dart';
+import 'package:avent_of_code/solver.dart';
 import 'Difference.dart';
 
 class Day10Part1 extends Solver {
