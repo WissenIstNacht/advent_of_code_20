@@ -1,4 +1,4 @@
-import 'package:avent_of_code/solver.dart';
+import 'package:advent_of_code/solver.dart';
 import 'Group.dart';
 
 class Day6Part2 extends Solver {

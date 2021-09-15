@@ -1,5 +1,5 @@
 import 'package:advent_of_code/executor.dart';
-import 'day10/a10p2.dart';
+import 'bin/day10/a10p2.dart';
 
 void main(List<String> arguments) {
   var solver = Day10Part2();

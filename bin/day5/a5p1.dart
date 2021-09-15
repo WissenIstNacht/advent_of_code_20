@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:avent_of_code/solver.dart';
+import 'package:advent_of_code/solver.dart';
 import 'seatNumber.dart';
 
 class Day5Part1 extends Solver {

@@ -1,4 +1,4 @@
-import 'package:avent_of_code/solver.dart';
+import 'package:advent_of_code/solver.dart';
 
 class Day10Part2 extends Solver {
   Day10Part2() : super(10);
