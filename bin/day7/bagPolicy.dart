@@ -3,8 +3,8 @@ class BagPolicy {
     final line_regex = RegExp(
         r'^(?<container_col>\w+ \w+) bags contain (?:(?<some>(?:\d+ \w+ \w+ bags?,?\s?)+)|(?<none>no other bags)).$');
     final match = line_regex.firstMatch(policy);
-    // Every Rule has a subject (bag of a certain color) and rule objects (number of bags
-    // of a certain color that can be contained)
+    // Every Rule has a subject (bag of a certain color) and rule objects
+    // (number of bags of a certain color that can be contained)
     final ruleSubject = match?.namedGroup('container_col') ?? "";
     final ruleObjects =
         match?.namedGroup('some') ?? match?.namedGroup('none') ?? "";

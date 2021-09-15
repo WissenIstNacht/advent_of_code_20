@@ -8,8 +8,8 @@ class Day4Part2 extends Solver {
     var partial_passport = '';
     var validCount = 0;
     for (var line in input) {
-      // A passport may stretch across several lines in the file. Accumulate them into one
-      // line of string before processing them.
+      // A passport may stretch across several lines in the file. Accumulate
+      // them into one line of string before processing them.
       if (line.isNotEmpty) {
         partial_passport += line + ' ';
       } else {
@@ -21,9 +21,10 @@ class Day4Part2 extends Solver {
   }
 
   bool checkValidity(String passport) {
-    // Returns between 1 and 8 matches, depending on the nr. fields per passport. Each
-    // match corresponds to a field. Each match consists of 3 groups. One contains the
-    // whole field, one contains the field's key 'k' and the other the value 'v'.
+    // Returns between 1 and 8 matches, depending on the nr. fields per
+    // passport. Each match corresponds to a field. Each match consists of 3
+    // groups. One contains the whole field, one contains the field's key 'k'
+    // and the other the value 'v'.
     final regex_row = RegExp(r'(?<k>[a-z]+):(?<v>[a-zA-Z0-9_#]+)');
     final matches = regex_row.allMatches(passport);
 
@@ -33,7 +34,8 @@ class Day4Part2 extends Solver {
     final regex_xyr = RegExp(r'^[0-9]{4}$');
     final regex_hgt = RegExp(r'^(?<height>[0-9]{2,3})(?<unit>in|cm)$');
 
-    //passport with less then 7 fields must be missing essential field -> invalid.
+    // passport with less then 7 fields must be missing essential field ->
+    // invalid.
     if (matches.length < 7) return false;
 
     var has_cid = false;
@@ -55,7 +57,8 @@ class Day4Part2 extends Solver {
           if (!regex_hcl.hasMatch(value)) has_error = true;
           break;
         case 'byr':
-          // if the value is not picked up by the regexp, set it to something wrong.
+          // if the value is not picked up by the regexp, set it to something
+          // wrong.
           var year_match = regex_xyr.firstMatch(value)?.group(0) ?? '0';
           var year = int.parse(year_match);
           if (year < 1920 || 2002 < year) has_error = true;

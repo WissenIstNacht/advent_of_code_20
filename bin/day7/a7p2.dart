@@ -1,8 +1,6 @@
 import 'package:avent_of_code/solver.dart';
 import 'bagPolicy.dart';
 
-/*===== PART 1 =========================================================================*/
-
 class Day7Part2 extends Solver {
   Day7Part2() : super(7);
 

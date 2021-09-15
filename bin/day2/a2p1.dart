@@ -1,8 +1,6 @@
 import 'package:avent_of_code/solver.dart';
 import 'PasswordPolicy.dart';
 
-/*===== PART 1 =========================================================================*/
-
 class Day2Part1 extends Solver {
   Day2Part1() : super(2);
 
