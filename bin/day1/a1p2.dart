@@ -10,8 +10,9 @@ class Day1Part2 extends Solver {
     for (var i = 0; i < expenses.length; i++) {
       for (var j = i; j < expenses.length; j++) {
         for (var k = j + 1; k < expenses.length; k++) {
-          if (expenses[i] + expenses[j] + expenses[k] == 2020)
+          if (expenses[i] + expenses[j] + expenses[k] == 2020) {
             return (expenses[i] * expenses[j] * expenses[k]).toString();
+          }
         }
       }
     }

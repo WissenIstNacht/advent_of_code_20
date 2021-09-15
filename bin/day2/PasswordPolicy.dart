@@ -1,5 +1,5 @@
 class PolicyParser {
-  static explicit(String line) {
+  static PolicyParameters explicit(String line) {
     var i = 0;
     var sub = '';
 

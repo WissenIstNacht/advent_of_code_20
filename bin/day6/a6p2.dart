@@ -7,7 +7,7 @@ class Day6Part2 extends Solver {
   @override
   String solve(List<String> input) {
     var sum = 0;
-    final groupMaker = new GroupMaker(input);
+    final groupMaker = GroupMaker(input);
 
     var group = groupMaker.next();
     while (!(group is EmptyGroup)) {

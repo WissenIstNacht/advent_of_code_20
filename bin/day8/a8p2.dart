@@ -13,7 +13,6 @@ class Day8Part2 extends Solver {
       if (line.startsWith('acc')) {
         continue;
       }
-      var v = 1;
 
       input[i] = line.replaceFirstMapped(RegExp(r'(?:nop|jmp)'), (match) {
         return match.group(0) == 'jmp' ? 'nop' : 'jmp';

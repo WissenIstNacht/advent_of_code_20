@@ -10,10 +10,10 @@ class BagPolicy {
         match?.namedGroup('some') ?? match?.namedGroup('none') ?? "";
 
     if (ruleObjects == 'no other bags') {
-      return new Rule(ruleSubject, []);
+      return Rule(ruleSubject, []);
     } else {
       final bagCounts = parseBags(ruleObjects);
-      return new Rule(ruleSubject, bagCounts);
+      return Rule(ruleSubject, bagCounts);
     }
   }
 
@@ -21,7 +21,7 @@ class BagPolicy {
     final object_regex = RegExp(r'(?<number>\d+) (?<color>\w+ \w+)');
     final matches = object_regex.allMatches(ruleObjects);
     final bagCounts = matches
-        .map((m) => new RuleObject(
+        .map((m) => RuleObject(
             m.namedGroup('color') ?? "", m.namedGroup('number') ?? ""))
         .toList();
     return bagCounts;

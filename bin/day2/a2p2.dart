@@ -14,10 +14,12 @@ class Day2Part2 extends Solver {
     final policy = PolicyParser.regex(line);
     var first = false;
     var second = false;
-    if (policy.password[policy.minCount - 1] == policy.requiredChar)
+    if (policy.password[policy.minCount - 1] == policy.requiredChar) {
       first = true;
-    if (policy.password[policy.maxCount - 1] == policy.requiredChar)
+    }
+    if (policy.password[policy.maxCount - 1] == policy.requiredChar) {
       second = true;
+    }
     return first ^ second;
   }
 }

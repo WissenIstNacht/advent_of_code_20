@@ -17,7 +17,7 @@ class GroupMaker {
   GroupMaker(this.input);
 
   Group next() {
-    final group = new Group();
+    final group = Group();
     for (currLineIndx; currLineIndx < input.length; currLineIndx++) {
       final currLine = input[currLineIndx];
       if (currLine.isEmpty) {
