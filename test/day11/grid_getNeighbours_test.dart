@@ -1,20 +1,12 @@
-import 'dart:math';
-
 import 'package:test/test.dart';
 import 'dart:io';
 
 import '../../bin/day11/grid.dart';
 
 void main() {
-  late Grid emptyGrid, floorGrid, occupiedGrid, basicGrid;
+  late Grid basicGrid;
   setUp(() {
-    var lines = File('test/day11/lsInput').readAsLinesSync();
-    emptyGrid = Grid.fromList(lines);
-    lines = File('test/day11/dotsInput').readAsLinesSync();
-    floorGrid = Grid.fromList(lines);
-    lines = File('test/day11/hashTagsInput').readAsLinesSync();
-    occupiedGrid = Grid.fromList(lines);
-    lines = File('test/day11/basicInput').readAsLinesSync();
+    var lines = File('test/day11/inputs/basicInput').readAsLinesSync();
     basicGrid = Grid.fromList(lines);
   });
   test('Checking values returned for getNeighbours on top left corner', () {
