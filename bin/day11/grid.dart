@@ -23,11 +23,11 @@ class Grid {
   }
 
   // given a position, return the surrounding elements
-  List<int> getSurroundingElements(x, y) {
+  List<int> getNeighbours(x, y) {
     var list = <int>[];
     for (var i = x - 1; i <= x + 1; i++) {
       for (var j = y - 1; j <= y + 1; j++) {
-        if (i < 0 || j < 0 || i >= m || j >= n) {
+        if (i < 0 || j < 0 || i >= m || j >= n || i == x && j == y) {
           continue;
         }
         list.add(matrix[i][j]);
@@ -45,12 +45,12 @@ class Grid {
   }
 
   bool hasOccupiedNeighbor(x, y) {
-    return getSurroundingElements(x, y).contains(1);
+    return getNeighbours(x, y).contains(1);
   }
 
   bool hasTooManyNeighbors(x, y) {
     int folder(sum, element) => element == 1 ? sum + 1 : sum;
-    final occupiedNeighbors = getSurroundingElements(x, y).fold(0, folder);
+    final occupiedNeighbors = getNeighbours(x, y).fold(0, folder);
     return occupiedNeighbors >= 4;
   }
 
