@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 import 'dart:io';
 
-import '../../bin/day11/grid.dart';
+import '../../../bin/day11/grid.dart';
 
 void main() {
   late Grid basicGrid;

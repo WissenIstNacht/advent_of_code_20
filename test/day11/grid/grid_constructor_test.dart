@@ -1,11 +1,11 @@
 import 'package:test/test.dart';
 import 'dart:io';
 
-import '../../bin/day11/grid.dart';
+import '../../../bin/day11/grid.dart';
 
 void main() {
   test('Testing Grid constructor for dots', () {
-    final lines = File('test/day11/dotsInput').readAsLinesSync();
+    final lines = File('test/day11/inputs/dotsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
         res.matrix,
@@ -17,7 +17,7 @@ void main() {
   });
 
   test('Testing Grid constructor hashtags', () {
-    final lines = File('test/day11/hashtagsInput').readAsLinesSync();
+    final lines = File('test/day11/inputs/hashtagsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
         res.matrix,
@@ -29,7 +29,7 @@ void main() {
   });
 
   test('Testing Grid constructor L', () {
-    final lines = File('test/day11/lsInput').readAsLinesSync();
+    final lines = File('test/day11/inputs/lsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
         res.matrix,
@@ -41,7 +41,7 @@ void main() {
   });
 
   test('Testing Grid constructor basic input', () {
-    final lines = File('test/day11/basicInput').readAsLinesSync();
+    final lines = File('test/day11/inputs/basicInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
         res.matrix,
