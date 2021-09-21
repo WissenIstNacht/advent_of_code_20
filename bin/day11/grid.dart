@@ -22,7 +22,7 @@ class Grid {
     newMatrix = matrix;
   }
 
-  // given a position, return the surrounding elements
+  // given a position, return the surrounding elements as list
   List<int> getNeighbours(x, y) {
     var list = <int>[];
     for (var i = x - 1; i <= x + 1; i++) {
@@ -44,26 +44,27 @@ class Grid {
     return matrix[x][y] == 2;
   }
 
+  // checks first rule
   bool hasOccupiedNeighbor(x, y) {
     return getNeighbours(x, y).contains(1);
   }
 
+  // checks second rule
   bool hasTooManyNeighbors(x, y) {
     int folder(sum, element) => element == 1 ? sum + 1 : sum;
     final occupiedNeighbors = getNeighbours(x, y).fold(0, folder);
     return occupiedNeighbors >= 4;
   }
 
-  // int newCellState(x, y) {
-  //   // if cell is empty and does not contain occupied neighbor
-  //   if (isEmpty(x, y) && !hasOccupiedNeighbor(x, y)) {
-  //     return 1;
-  //   }
-  //   // if cell is occupied  four or more seats are occupied
-  //   if (isOccupied(x, y) && ) {
-  //     return 2;
-  //   }
-  //   //return current state
-  //   return matrix[x][y];
-  // }
+  // computes a cell's new state according to the rule, if they apply
+  // return the new value if the cell's state changed, otherwise returns 0
+  int newCellState(x, y) {
+    if (isEmpty(x, y) && !hasOccupiedNeighbor(x, y)) {
+      return 1;
+    }
+    if (isOccupied(x, y) && hasTooManyNeighbors(x, y)) {
+      return 2;
+    }
+    return 0;
+  }
 }
