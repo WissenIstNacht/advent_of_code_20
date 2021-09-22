@@ -67,4 +67,18 @@ class Grid {
     }
     return 0;
   }
+
+  void step() {
+    // apply new state to each cell
+    for (var i = 0; i < m; i++) {
+      for (var j = 0; j < n; j++) {
+        final newState = newCellState(i, j);
+        if (newState > 0) {
+          newMatrix[i][j] = newState;
+        }
+      }
+    }
+    // swap the matrices
+    matrix = newMatrix;
+  }
 }
