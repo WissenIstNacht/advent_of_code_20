@@ -2,6 +2,7 @@ class Grid {
   late int n, m;
   late List<List<int>> matrix;
   late List<List<int>> newMatrix;
+  bool stepChanged = false;
 
   Grid.fromList(List<String> list) {
     matrix = list.map((row) {
@@ -44,6 +45,18 @@ class Grid {
     return matrix[x][y] == 2;
   }
 
+  int occupiedSeats() {
+    var count = 0;
+    for (var i = 0; i < m; i++) {
+      for (var j = 0; j < n; j++) {
+        if (matrix[i][j] == 1) {
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
   // checks first rule
   bool hasOccupiedNeighbor(x, y) {
     return getNeighbours(x, y).contains(1);
@@ -51,8 +64,15 @@ class Grid {
 
   // checks second rule
   bool hasTooManyNeighbors(x, y) {
+    // print(matrix.toString());
+    // print('x: $x, y: $y');
+    final neighbours = getNeighbours(x, y);
+    // print('neighbours $neighbours');
+
     int folder(sum, element) => element == 1 ? sum + 1 : sum;
-    final occupiedNeighbors = getNeighbours(x, y).fold(0, folder);
+    final occupiedNeighbors = neighbours.fold(0, folder);
+
+    // print('occupied: $occupiedNeighbors');
     return occupiedNeighbors >= 4;
   }
 
@@ -68,19 +88,31 @@ class Grid {
     return 0;
   }
 
-  void step() {
+  bool step() {
     // apply new state to each cell
+    stepChanged = false;
     for (var i = 0; i < m; i++) {
       for (var j = 0; j < n; j++) {
         final newState = newCellState(i, j);
         if (newState > 0) {
           newMatrix[i][j] = newState;
+          stepChanged = true;
         } else {
           newMatrix[i][j] = matrix[i][j];
         }
       }
     }
     // swap the matrices
-    matrix = newMatrix;
+    copy();
+    return stepChanged;
+  }
+
+  void copy() {
+    //copy new matrix into matrix
+    for (var i = 0; i < m; i++) {
+      for (var j = 0; j < n; j++) {
+        matrix[i][j] = newMatrix[i][j];
+      }
+    }
   }
 }
