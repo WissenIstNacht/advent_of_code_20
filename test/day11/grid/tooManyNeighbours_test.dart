@@ -22,13 +22,17 @@ void main() {
   test('Full input middle has too many occupied neighbours', () {
     expect(fullGrid.hasTooManyNeighbors(1, 1), equals(true));
   });
-  test('Full input top left has too many occupied neighbours', () {
+  test('Full input top left does not have too many occupied neighbours', () {
     expect(fullGrid.hasTooManyNeighbors(0, 0), equals(false));
   });
   test('Diamond input middle has too many occupied neighbours', () {
     expect(diamondGrid.hasTooManyNeighbors(1, 1), equals(true));
   });
-  test('Diamond input top left has too many occupied neighbours', () {
+  test('Diamond input top left does not have too many occupied neighbours', () {
     expect(diamondGrid.hasTooManyNeighbors(0, 0), equals(false));
+  });
+  test('Diamond input top middle does not have too many occupied neighbours',
+      () {
+    expect(diamondGrid.hasTooManyNeighbors(0, 1), equals(false));
   });
 }

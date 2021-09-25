@@ -24,11 +24,15 @@ void main() {
   test('Basic input top right does not change', () {
     expect(basicGrid.newCellState(0, 2), equals(0));
   });
-  test('Empty input middle input changes', () {
+  test('Empty input middle changes', () {
     expect(emptyGrid.newCellState(1, 1), equals(1));
   });
   test('Empty input top left changes', () {
     expect(emptyGrid.newCellState(0, 0), equals(1));
+  });
+  test('Empty input top middle changes', () {
+    print(emptyGrid.newCellState(0, 1));
+    expect(emptyGrid.newCellState(0, 1), equals(1));
   });
   test('Full input top left does not change', () {
     expect(fullGrid.newCellState(0, 0), equals(0));

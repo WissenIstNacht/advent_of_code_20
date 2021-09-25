@@ -19,7 +19,7 @@ class Grid {
     }).toList();
     m = matrix.length;
     n = matrix[0].length;
-    newMatrix = matrix;
+    newMatrix = List.generate(m, (i) => List.generate(n, (j) => 0));
   }
 
   // given a position, return the surrounding elements as list
@@ -75,6 +75,8 @@ class Grid {
         final newState = newCellState(i, j);
         if (newState > 0) {
           newMatrix[i][j] = newState;
+        } else {
+          newMatrix[i][j] = matrix[i][j];
         }
       }
     }
