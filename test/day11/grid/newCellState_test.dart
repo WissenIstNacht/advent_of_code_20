@@ -16,34 +16,42 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Basic input middle does not change', () {
-    expect(basicGrid.newCellState(1, 1), equals(0));
+    final oldState = basicGrid.matrix[1][1];
+    final newState = basicGrid.newCellState(1, 1);
+    expect(newState, equals(oldState));
   });
   test('Basic input bottom left does not change', () {
-    expect(basicGrid.newCellState(2, 0), equals(0));
+    final oldState = basicGrid.matrix[2][0];
+    final newState = basicGrid.newCellState(2, 0);
+    expect(newState, equals(oldState));
   });
   test('Basic input top right does not change', () {
-    expect(basicGrid.newCellState(0, 2), equals(0));
+    final oldState = basicGrid.matrix[0][2];
+    final newState = basicGrid.newCellState(0, 2);
+    expect(newState, equals(oldState));
   });
   test('Empty input middle changes', () {
-    expect(emptyGrid.newCellState(1, 1), equals(1));
+    expect(emptyGrid.newCellState(1, 1), equals(CellType.occupied));
   });
   test('Empty input top left changes', () {
-    expect(emptyGrid.newCellState(0, 0), equals(1));
+    expect(emptyGrid.newCellState(0, 0), equals(CellType.occupied));
   });
   test('Empty input top middle changes', () {
     print(emptyGrid.newCellState(0, 1));
-    expect(emptyGrid.newCellState(0, 1), equals(1));
+    expect(emptyGrid.newCellState(0, 1), equals(CellType.occupied));
   });
   test('Full input top left does not change', () {
-    expect(fullGrid.newCellState(0, 0), equals(0));
+    final oldState = basicGrid.matrix[0][0];
+    final newState = basicGrid.newCellState(0, 0);
+    expect(newState, equals(oldState));
   });
   test('Full input middle does change', () {
-    expect(fullGrid.newCellState(1, 1), equals(2));
+    expect(fullGrid.newCellState(1, 1), equals(CellType.empty));
   });
   test('Full input top middle does change', () {
-    expect(fullGrid.newCellState(0, 1), equals(2));
+    expect(fullGrid.newCellState(0, 1), equals(CellType.empty));
   });
   test('Diamond input top middle does change', () {
-    expect(fullGrid.newCellState(0, 1), equals(2));
+    expect(fullGrid.newCellState(0, 1), equals(CellType.empty));
   });
 }

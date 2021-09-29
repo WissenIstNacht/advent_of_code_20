@@ -8,7 +8,7 @@ void main() {
     final lines = File('test/day11/inputs/dotsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
-        res.matrix,
+        res.toInts(),
         equals([
           [0, 0, 0],
           [0, 0, 0],
@@ -20,7 +20,7 @@ void main() {
     final lines = File('test/day11/inputs/hashtagsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
-        res.matrix,
+        res.toInts(),
         equals([
           [1, 1, 1],
           [1, 1, 1],
@@ -32,7 +32,7 @@ void main() {
     final lines = File('test/day11/inputs/lsInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
-        res.matrix,
+        res.toInts(),
         equals([
           [2, 2, 2],
           [2, 2, 2],
@@ -44,7 +44,7 @@ void main() {
     final lines = File('test/day11/inputs/basicInput').readAsLinesSync();
     final res = Grid.fromList(lines);
     expect(
-        res.matrix,
+        res.toInts(),
         equals([
           [0, 2, 1],
           [1, 0, 2],

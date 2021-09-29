@@ -14,26 +14,25 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Diamond grid does not change on step', () {
-    final curr = diamondGrid.matrix.toString();
+    final curr = diamondGrid.toInts();
     diamondGrid.step();
-    final next = diamondGrid.matrix.toString();
+    final next = diamondGrid.toInts();
     expect(next, equals(curr));
   });
   test('Empty grid becomes full grid after step', () {
     emptyGrid.step();
-    final curr = emptyGrid.matrix.toString();
-    final next = fullGrid.matrix.toString();
+    final curr = emptyGrid.toInts();
+    final next = fullGrid.toInts();
     expect(curr, equals(next));
   });
   test('Full grid cross after step', () {
     fullGrid.step();
-    final curr = fullGrid.matrix.toString();
-    print(curr);
+    final curr = fullGrid.toInts();
     final next = [
       [1, 2, 1],
       [2, 2, 2],
       [1, 2, 1]
     ];
-    expect(curr, equals(next.toString()));
+    expect(curr, equals(next));
   });
 }
