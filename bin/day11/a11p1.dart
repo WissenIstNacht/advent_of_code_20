@@ -9,7 +9,7 @@ class Day11Part1 extends Solver {
   String solve(List<String> input) {
     final officialGrid = Grid.fromList(input);
     while (officialGrid.step()) {}
-    final res = officialGrid.occupiedSeats();
+    final res = officialGrid.occupiedSeatsCount();
     return res.toString();
   }
 }

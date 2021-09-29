@@ -13,7 +13,7 @@ void main() {
     while (officialGrid.step()) {
       print(officialGrid.toInts());
     }
-    final res = officialGrid.occupiedSeats();
+    final res = officialGrid.occupiedSeatsCount();
     expect(res, equals(37));
   });
 }

@@ -38,30 +38,23 @@ class Grid {
     return list;
   }
 
-  bool isOccupied(x, y) {
-    return matrix[x][y] == CellType.occupied;
-  }
+  bool isOccupied(x, y) => matrix[x][y] == CellType.occupied;
 
-  bool isEmpty(x, y) {
-    return matrix[x][y] == CellType.empty;
-  }
+  bool isEmpty(x, y) => matrix[x][y] == CellType.empty;
 
-  int occupiedSeats() {
+  int occupiedSeatsCount() {
     var count = 0;
     for (var i = 0; i < m; i++) {
       for (var j = 0; j < n; j++) {
-        if (matrix[i][j] == CellType.occupied) {
-          count++;
-        }
+        if (isOccupied(i, j)) count++;
       }
     }
     return count;
   }
 
   // checks first rule
-  bool hasOccupiedNeighbor(x, y) {
-    return getNeighbours(x, y).contains(CellType.occupied);
-  }
+  bool hasOccupiedNeighbor(x, y) =>
+      getNeighbours(x, y).contains(CellType.occupied);
 
   // checks second rule
   bool hasTooManyNeighbors(x, y) {
