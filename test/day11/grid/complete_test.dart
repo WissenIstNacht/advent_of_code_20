@@ -10,9 +10,7 @@ void main() {
     officialGrid = Grid.fromList(lines);
   });
   test('The official grid ends up with 37 occupied seats', () {
-    while (officialGrid.step()) {
-      print(officialGrid.toInts());
-    }
+    while (officialGrid.step()) {}
     final res = officialGrid.occupiedSeatsCount();
     expect(res, equals(37));
   });
