@@ -5,8 +5,8 @@ import 'cell.dart';
 class Grid {
   late int n, m;
   late List<List<Cell>> matrix;
-  late List<List<Cell>> newMatrix;
-  bool stepChanged = false;
+
+  // CONSTRUCTORS ==============================================================
 
   Grid.fromList(List<String> list) {
     matrix = list.map((row) {
@@ -15,10 +15,21 @@ class Grid {
     }).toList();
     m = matrix.length;
     n = matrix[0].length;
-
-    // generate "copy" matrix filled with floor cells
-    newMatrix = List.generate(m, (i) => List.generate(n, (j) => Cell.floor()));
   }
+
+  Grid(List<List<Cell>> cells) {
+    matrix = cells;
+    m = matrix.length;
+    n = matrix[0].length;
+  }
+
+  // GETTER & SETTER ===========================================================
+
+  Cell getCell(int i, int j) => matrix[i][j];
+
+  void setCell(int i, int j, Cell cell) => matrix[i][j] = cell;
+
+  // QUERIES ===================================================================
 
   // Given an x,y position on the grid, return the surrounding elements as list
   List<Cell> getNeighbours(x, y) {
@@ -70,34 +81,15 @@ class Grid {
       return Cell.empty();
     }
 
-    return matrix[x][y];
+    return matrix[x][y].copy();
   }
 
-  bool step() {
-    // apply new state to each cell
-    stepChanged = false;
-    for (var i = 0; i < m; i++) {
-      for (var j = 0; j < n; j++) {
-        final currState = matrix[i][j];
-        final newState = newCellState(i, j);
-        if (currState != newState) {
-          stepChanged = true;
-        }
-        newMatrix[i][j] = newState;
-      }
-    }
-    // swap the matrices
-    copy();
-    return stepChanged;
-  }
+  // UTILS =====================================================================
 
-  void copy() {
-    //copy new matrix into matrix
-    for (var i = 0; i < m; i++) {
-      for (var j = 0; j < n; j++) {
-        matrix[i][j] = newMatrix[i][j];
-      }
-    }
+  Grid copy() {
+    final newMatrix =
+        matrix.map((row) => row.map((cell) => cell.copy()).toList()).toList();
+    return Grid(newMatrix);
   }
 
   List<List<int>> toInts() {

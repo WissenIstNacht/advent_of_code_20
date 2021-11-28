@@ -2,6 +2,7 @@ import 'package:test/test.dart';
 import 'dart:io';
 
 import '../../../bin/day11/grid.dart';
+import '../../../bin/day11/grid_evolution.dart';
 
 void main() {
   late Grid emptyGrid, fullGrid, diamondGrid;
@@ -14,20 +15,23 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Diamond grid does not change on step', () {
-    final curr = diamondGrid.toInts();
-    diamondGrid.step();
-    final next = diamondGrid.toInts();
+    final ge = GridEvolver(diamondGrid);
+    final curr = ge.currGrid.toInts();
+    ge.step();
+    final next = ge.currGrid.toInts();
     expect(next, equals(curr));
   });
   test('Empty grid becomes full grid after step', () {
-    emptyGrid.step();
-    final curr = emptyGrid.toInts();
+    final ge = GridEvolver(emptyGrid);
+    ge.step();
+    final curr = ge.currGrid.toInts();
     final next = fullGrid.toInts();
     expect(curr, equals(next));
   });
-  test('Full grid cross after step', () {
-    fullGrid.step();
-    final curr = fullGrid.toInts();
+  test('Full grid becomes cross after step', () {
+    final ge = GridEvolver(fullGrid);
+    ge.step();
+    final curr = ge.currGrid.toInts();
     final next = [
       [1, 2, 1],
       [2, 2, 2],

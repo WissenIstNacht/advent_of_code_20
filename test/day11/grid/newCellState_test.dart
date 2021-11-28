@@ -41,8 +41,8 @@ void main() {
     expect(emptyGrid.newCellState(0, 1).state, equals(CellType.occupied));
   });
   test('Full input top left does not change', () {
-    final oldState = basicGrid.matrix[0][0];
-    final newState = basicGrid.newCellState(0, 0);
+    final oldState = basicGrid.matrix[0][0].state;
+    final newState = basicGrid.newCellState(0, 0).state;
     expect(newState, equals(oldState));
   });
   test('Full input middle does change', () {

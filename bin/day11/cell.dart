@@ -1,6 +1,10 @@
 class Cell {
   late CellType state;
 
+  // CONSTRUCTORS ==============================================================
+
+  Cell(this.state);
+
   Cell.fromString(String s) {
     if (s == '.') {
       state = CellType.floor;
@@ -25,11 +29,15 @@ class Cell {
     state = CellType.empty;
   }
 
+  // QUERIES ===================================================================
+
   bool isOccupied() => state == CellType.occupied;
 
   bool isEmpty() => state == CellType.empty;
 
   bool isFloor() => state == CellType.floor;
+
+  // GETTERS ===================================================================
 
   void occupy() {
     state = CellType.occupied;
@@ -38,6 +46,10 @@ class Cell {
   void empty() {
     state = CellType.empty;
   }
+
+  // UTILS =====================================================================
+
+  Cell copy() => Cell(state);
 
   int toInt() => state.index;
 }
