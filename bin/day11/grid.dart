@@ -30,8 +30,6 @@ class Grid {
 
   void setCell(int i, int j, Cell cell) => matrix[i][j] = cell;
 
-  // QUERIES ===================================================================
-
   // Given an int x,y position on the grid, return the surrounding elements as list
   Neighbourhood getNeighbours(int x, int y) {
     var neighbourhood = Neighbourhood.empty();
@@ -46,6 +44,8 @@ class Grid {
     return neighbourhood;
   }
 
+  // QUERIES ===================================================================
+
   int occupiedSeatsCount() {
     var count = 0;
     for (var i = 0; i < m; i++) {
@@ -54,23 +54,6 @@ class Grid {
       }
     }
     return count;
-  }
-
-  // computes a cell's new state according to the rule.
-  //
-  // If they apply return the new value if the cell's state changed, otherwise
-  // returns 0
-  Cell newCellState(int x, int y) {
-    var currCell = getCell(x, y);
-    var neighbourhood = getNeighbours(x, y);
-    if (currCell.isEmpty() && !neighbourhood.hasOccupiedNeighbor(x, y)) {
-      return Cell.occupied();
-    }
-    if (currCell.isOccupied() && neighbourhood.hasTooManyNeighbors(x, y, 4)) {
-      return Cell.empty();
-    }
-
-    return currCell.copy();
   }
 
   // UTILS =====================================================================
