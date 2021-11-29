@@ -14,18 +14,23 @@ void main() {
     emptyGrid = Grid.fromList(lines);
   });
   test('Check that basic inputs middle has occupied neighbours', () {
-    expect(basicGrid.hasOccupiedNeighbor(1, 1), equals(true));
+    var neighbourhood = basicGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasOccupiedNeighbor(1, 1), equals(true));
   });
   test('Check that basic inputs top right has no occupied neighbours', () {
-    expect(basicGrid.hasOccupiedNeighbor(0, 2), equals(false));
+    var neighbourhood = basicGrid.getNeighbours(0, 2);
+    expect(neighbourhood.hasOccupiedNeighbor(0, 2), equals(false));
   });
   test('Check that basic inputs bottom left has occupied neighbours', () {
-    expect(basicGrid.hasOccupiedNeighbor(0, 2), equals(false));
+    var neighbourhood = basicGrid.getNeighbours(0, 2);
+    expect(neighbourhood.hasOccupiedNeighbor(0, 2), equals(false));
   });
   test('Check that dots input in middle has no occupied neighbours', () {
-    expect(floorGrid.hasOccupiedNeighbor(1, 1), equals(false));
+    var neighbourhood = floorGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasOccupiedNeighbor(1, 1), equals(false));
   });
   test('Check that ls inputs middle has no occupied neighbours', () {
-    expect(emptyGrid.hasOccupiedNeighbor(1, 1), equals(false));
+    var neighbourhood = emptyGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasOccupiedNeighbor(1, 1), equals(false));
   });
 }

@@ -1,6 +1,7 @@
 import 'package:characters/characters.dart';
 
 import 'cell.dart';
+import 'neighbourhood.dart';
 
 class Grid {
   late int n, m;
@@ -31,18 +32,18 @@ class Grid {
 
   // QUERIES ===================================================================
 
-  // Given an x,y position on the grid, return the surrounding elements as list
-  List<Cell> getNeighbours(x, y) {
-    var list = <Cell>[];
+  // Given an int x,y position on the grid, return the surrounding elements as list
+  Neighbourhood getNeighbours(int x, int y) {
+    var neighbourhood = Neighbourhood.empty();
     for (var i = x - 1; i <= x + 1; i++) {
       for (var j = y - 1; j <= y + 1; j++) {
         if (i < 0 || j < 0 || i >= m || j >= n || i == x && j == y) {
           continue;
         }
-        list.add(matrix[i][j]);
+        neighbourhood.add(matrix[i][j]);
       }
     }
-    return list;
+    return neighbourhood;
   }
 
   int occupiedSeatsCount() {
@@ -55,33 +56,21 @@ class Grid {
     return count;
   }
 
-  // checks first rule
-  bool hasOccupiedNeighbor(x, y) =>
-      getNeighbours(x, y).any((cell) => cell.isOccupied());
-
-  // checks second rule
-  bool hasTooManyNeighbors(x, y) {
-    final neighbours = getNeighbours(x, y);
-
-    int folder(int sum, Cell element) => element.isOccupied() ? sum + 1 : sum;
-    final occupiedNeighbors = neighbours.fold(0, folder);
-
-    return occupiedNeighbors >= 4;
-  }
-
   // computes a cell's new state according to the rule.
   //
   // If they apply return the new value if the cell's state changed, otherwise
   // returns 0
-  Cell newCellState(x, y) {
-    if (matrix[x][y].isEmpty() && !hasOccupiedNeighbor(x, y)) {
+  Cell newCellState(int x, int y) {
+    var currCell = getCell(x, y);
+    var neighbourhood = getNeighbours(x, y);
+    if (currCell.isEmpty() && !neighbourhood.hasOccupiedNeighbor(x, y)) {
       return Cell.occupied();
     }
-    if (matrix[x][y].isOccupied() && hasTooManyNeighbors(x, y)) {
+    if (currCell.isOccupied() && neighbourhood.hasTooManyNeighbors(x, y, 4)) {
       return Cell.empty();
     }
 
-    return matrix[x][y].copy();
+    return currCell.copy();
   }
 
   // UTILS =====================================================================

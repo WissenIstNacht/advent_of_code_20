@@ -14,25 +14,32 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Basic input middle does not have too many occupied neighbours', () {
-    expect(basicGrid.hasTooManyNeighbors(1, 1), equals(false));
+    var neighbourhood = basicGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasTooManyNeighbors(1, 1, 4), equals(false));
   });
   test('Basic input top left does not have too many occupied neighbours', () {
-    expect(basicGrid.hasTooManyNeighbors(0, 2), equals(false));
+    var neighbourhood = basicGrid.getNeighbours(0, 2);
+    expect(neighbourhood.hasTooManyNeighbors(0, 2, 4), equals(false));
   });
   test('Full input middle has too many occupied neighbours', () {
-    expect(fullGrid.hasTooManyNeighbors(1, 1), equals(true));
+    var neighbourhood = fullGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasTooManyNeighbors(1, 1, 4), equals(true));
   });
   test('Full input top left does not have too many occupied neighbours', () {
-    expect(fullGrid.hasTooManyNeighbors(0, 0), equals(false));
+    var neighbourhood = fullGrid.getNeighbours(0, 0);
+    expect(neighbourhood.hasTooManyNeighbors(0, 0, 4), equals(false));
   });
   test('Diamond input middle has too many occupied neighbours', () {
-    expect(diamondGrid.hasTooManyNeighbors(1, 1), equals(true));
+    var neighbourhood = diamondGrid.getNeighbours(1, 1);
+    expect(neighbourhood.hasTooManyNeighbors(1, 1, 4), equals(true));
   });
   test('Diamond input top left does not have too many occupied neighbours', () {
-    expect(diamondGrid.hasTooManyNeighbors(0, 0), equals(false));
+    var neighbourhood = diamondGrid.getNeighbours(0, 0);
+    expect(neighbourhood.hasTooManyNeighbors(0, 0, 4), equals(false));
   });
   test('Diamond input top middle does not have too many occupied neighbours',
       () {
-    expect(diamondGrid.hasTooManyNeighbors(0, 1), equals(false));
+    var neighbourhood = diamondGrid.getNeighbours(0, 1);
+    expect(neighbourhood.hasTooManyNeighbors(0, 1, 4), equals(false));
   });
 }
