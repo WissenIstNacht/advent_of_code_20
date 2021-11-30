@@ -1,8 +1,9 @@
 import 'package:test/test.dart';
 import 'dart:io';
 
-import '../../../bin/day11/grid.dart';
 import '../../../bin/day11/cell.dart';
+import '../../../bin/day11/grid.dart';
+import '../../../bin/day11/grid_evolution.dart';
 
 void main() {
   late Grid basicGrid, emptyGrid, fullGrid, diamondGrid;
@@ -17,41 +18,52 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Basic input middle does not change', () {
-    final oldState = basicGrid.matrix[1][1];
-    final newState = basicGrid.newCellState(1, 1);
+    final evolver = Evolver1(basicGrid);
+    final oldState = evolver.getGrid().getCell(1, 1);
+    final newState = evolver.newCellState(1, 1);
     expect(newState.state, equals(oldState.state));
   });
   test('Basic input bottom left does not change', () {
-    final oldState = basicGrid.matrix[2][0];
-    final newState = basicGrid.newCellState(2, 0);
+    final evolver = Evolver1(basicGrid);
+    final oldState = evolver.getGrid().getCell(0, 2);
+    final newState = evolver.newCellState(0, 2);
     expect(newState.state, equals(oldState.state));
   });
   test('Basic input top right does not change', () {
-    final oldState = basicGrid.matrix[0][2];
-    final newState = basicGrid.newCellState(0, 2);
+    final evolver = Evolver1(basicGrid);
+    final oldState = evolver.getGrid().getCell(0, 2);
+    final newState = evolver.newCellState(0, 2);
     expect(newState.state, equals(oldState.state));
   });
   test('Empty input middle changes', () {
-    expect(emptyGrid.newCellState(1, 1).state, equals(CellType.occupied));
+    final evolver = Evolver1(emptyGrid);
+    final newState = evolver.newCellState(1, 1).state;
+    expect(newState, equals(CellType.occupied));
   });
   test('Empty input top left changes', () {
-    expect(emptyGrid.newCellState(0, 0).state, equals(CellType.occupied));
+    final evolver = Evolver1(emptyGrid);
+    final newState = evolver.newCellState(0, 0).state;
+    expect(newState, equals(CellType.occupied));
   });
   test('Empty input top middle changes', () {
-    expect(emptyGrid.newCellState(0, 1).state, equals(CellType.occupied));
+    final evolver = Evolver1(emptyGrid);
+    final newState = evolver.newCellState(0, 1).state;
+    expect(newState, equals(CellType.occupied));
   });
   test('Full input top left does not change', () {
-    final oldState = basicGrid.matrix[0][0].state;
-    final newState = basicGrid.newCellState(0, 0).state;
+    final evolver = Evolver1(basicGrid);
+    final oldState = evolver.getGrid().getCell(0, 0).state;
+    final newState = evolver.newCellState(0, 0).state;
     expect(newState, equals(oldState));
   });
   test('Full input middle does change', () {
-    expect(fullGrid.newCellState(1, 1).state, equals(CellType.empty));
+    final evolver = Evolver1(fullGrid);
+    final newState = evolver.newCellState(1, 1).state;
+    expect(newState, equals(CellType.empty));
   });
   test('Full input top middle does change', () {
-    expect(fullGrid.newCellState(0, 1).state, equals(CellType.empty));
-  });
-  test('Diamond input top middle does change', () {
-    expect(fullGrid.newCellState(0, 1).state, equals(CellType.empty));
+    final evolver = Evolver1(fullGrid);
+    final newState = evolver.newCellState(0, 1).state;
+    expect(newState, equals(CellType.empty));
   });
 }

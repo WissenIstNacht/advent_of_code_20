@@ -44,6 +44,19 @@ class Grid {
     return neighbourhood;
   }
 
+  // getFirstNeighboursInSight() {
+  //   //TODO check if this is right
+  //   var neighbourhood = Neighbourhood.empty();
+  //   for (var i = 0; i < m; i++) {
+  //     for (var j = 0; j < n; j++) {
+  //       if (matrix[i][j].isAlive) {
+  //         neighbourhood.add(matrix[i][j]);
+  //       }
+  //     }
+  //   }
+  //   return neighbourhood;
+  // }
+
   // QUERIES ===================================================================
 
   int occupiedSeatsCount() {

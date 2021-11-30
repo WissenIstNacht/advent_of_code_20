@@ -9,7 +9,7 @@ class Day11Part1 extends Solver {
   @override
   String solve(List<String> input) {
     final officialGrid = Grid.fromList(input);
-    final evolver = GridEvolver(officialGrid);
+    final evolver = Evolver1(officialGrid);
 
     while (evolver.step()) {}
     final res = evolver.currGrid.occupiedSeatsCount();

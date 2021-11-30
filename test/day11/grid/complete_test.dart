@@ -10,7 +10,7 @@ void main() {
   setUp(() {
     var lines = File('test/day11/inputs/officialInput').readAsLinesSync();
     officialGrid = Grid.fromList(lines);
-    evolver = GridEvolver(officialGrid);
+    evolver = Evolver1(officialGrid);
   });
   test('The official grid ends up with 37 occupied seats', () {
     while (evolver.step()) {}

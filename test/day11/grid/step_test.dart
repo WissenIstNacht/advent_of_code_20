@@ -15,21 +15,21 @@ void main() {
     diamondGrid = Grid.fromList(lines);
   });
   test('Diamond grid does not change on step', () {
-    final ge = GridEvolver(diamondGrid);
+    final ge = Evolver1(diamondGrid);
     final curr = ge.currGrid.toInts();
     ge.step();
     final next = ge.currGrid.toInts();
     expect(next, equals(curr));
   });
   test('Empty grid becomes full grid after step', () {
-    final ge = GridEvolver(emptyGrid);
+    final ge = Evolver1(emptyGrid);
     ge.step();
     final curr = ge.currGrid.toInts();
     final next = fullGrid.toInts();
     expect(curr, equals(next));
   });
   test('Full grid becomes cross after step', () {
-    final ge = GridEvolver(fullGrid);
+    final ge = Evolver1(fullGrid);
     ge.step();
     final curr = ge.currGrid.toInts();
     final next = [
