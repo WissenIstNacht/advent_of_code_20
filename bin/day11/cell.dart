@@ -37,6 +37,8 @@ class Cell {
 
   bool isFloor() => state == CellType.floor;
 
+  bool isSeat() => state != CellType.floor;
+
   // GETTERS ===================================================================
 
   void occupy() {

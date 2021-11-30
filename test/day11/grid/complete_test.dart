@@ -5,16 +5,25 @@ import '../../../bin/day11/grid.dart';
 import '../../../bin/day11/grid_evolution.dart';
 
 void main() {
-  late Grid officialGrid;
-  late GridEvolver evolver;
+  late Grid sampleGrid;
   setUp(() {
     var lines = File('test/day11/inputs/officialInput').readAsLinesSync();
-    officialGrid = Grid.fromList(lines);
-    evolver = Evolver1(officialGrid);
+    sampleGrid = Grid.fromList(lines);
   });
-  test('The official grid ends up with 37 occupied seats', () {
+  test('The sample grid ends up with 37 occupied seats for the first problem',
+      () {
+    final evolver = Evolver1(sampleGrid);
     while (evolver.step()) {}
     final res = evolver.currGrid.occupiedSeatsCount();
     expect(res, equals(37));
+  });
+  test('The sample grid ends up with 26 occupied seats for the first problem',
+      () {
+    final evolver = Evolver2(sampleGrid);
+    while (evolver.step()) {
+      print(evolver.currGrid.toInts());
+    }
+    final res = evolver.currGrid.occupiedSeatsCount();
+    expect(res, equals(26));
   });
 }

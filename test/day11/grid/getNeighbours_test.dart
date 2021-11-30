@@ -4,12 +4,15 @@ import 'dart:io';
 import '../../../bin/day11/grid.dart';
 
 void main() {
-  late Grid basicGrid;
+  late Grid basicGrid, directionsGrid;
   setUp(() {
     var lines = File('test/day11/inputs/basicInput').readAsLinesSync();
     basicGrid = Grid.fromList(lines);
+    lines = File('test/day11/inputs/allDirections').readAsLinesSync();
+    directionsGrid = Grid.fromList(lines);
   });
   test('Checking values returned for getNeighbours on top left corner', () {
+    print(basicGrid.toInts());
     final neighbours =
         basicGrid.getNeighbours(0, 0).map((n) => n.toInt()).toList();
     expect(neighbours, equals([2, 1, 0]));
@@ -33,5 +36,13 @@ void main() {
     final neighbours =
         basicGrid.getNeighbours(1, 1).map((n) => n.toInt()).toList();
     expect(neighbours, equals([0, 2, 1, 1, 2, 2, 1, 0]));
+  });
+  test('Checking values returned for getNeighboursInSight for middle element',
+      () {
+    final neighbours = directionsGrid
+        .getFirstNeighboursInSight(4, 3)
+        .map((n) => n.toInt())
+        .toList();
+    expect(neighbours, equals([1, 1, 1, 1, 1, 1, 1, 1]));
   });
 }
