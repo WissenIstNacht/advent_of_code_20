@@ -8,7 +8,7 @@ class Day7Part1 extends Solver {
 
   @override
   String solve(List<String> input) {
-    final Rules rules = {};
+    final rules = <String, List<RuleObject>>{};
     input.forEach((line) {
       final rule = BagPolicy.parseRule(line);
       rules[rule.subject] = rule.objects;
