@@ -51,20 +51,20 @@ class Evolver1 extends GridEvolver {
   }
 }
 
-// class Evolver2 extends GridEvolver {
-//   Evolver2(Grid grid) : super(grid);
+class Evolver2 extends GridEvolver {
+  Evolver2(Grid grid) : super(grid);
 
-//   @override
-//   Cell newCellState(int x, int y) {
-//     var currCell = currGrid.getCell(x, y);
-//     var neighbourhood = currGrid.getNeighbours(x, y);
-//     if (currCell.isEmpty() && !neighbourhood.hasOccupiedNeighbor(x, y)) {
-//       return Cell.occupied();
-//     }
-//     if (currCell.isOccupied() && neighbourhood.hasTooManyNeighbors(x, y, 4)) {
-//       return Cell.empty();
-//     }
+  @override
+  Cell newCellState(int x, int y) {
+    var currCell = currGrid.getCell(x, y);
+    var neighbourhood = currGrid.getFirstNeighboursInSight(x, y);
+    if (currCell.isEmpty() && !neighbourhood.hasOccupiedNeighbor(x, y)) {
+      return Cell.occupied();
+    }
+    if (currCell.isOccupied() && neighbourhood.hasTooManyNeighbors(x, y, 5)) {
+      return Cell.empty();
+    }
 
-//     return currCell.copy();
-//   }
-// }
+    return currCell.copy();
+  }
+}
